@@ -1,44 +1,42 @@
-# 📘 Lab Submission – Refactoring Task (Flutter Project)
+# 📘 Lab Submission – Refactoring Task (LoginView)
 
 ## 📝 Task Requirements
-This lab demonstrates the following steps:
-1. **Find code** in the project that is a good candidate for refactoring.  
-2. **Write tests** for the original code.  
-3. **Refactor the code** while ensuring tests still pass.  
-4. **Submit via Pull Request** for instructor/TA review.  
+1. Find code in the project that is a good candidate for refactoring.  
+2. Write tests for that code.  
+3. Refactor the code while ensuring tests still pass.  
+4. Submit via Pull Request for instructor/TA review.  
 
 ---
 
 ## 🔍 Code Selected
-- **File:** `lib/views/admin_login_view.dart`  
+- **File:** `lib/views/login_view.dart`  
 - **Reason for refactoring:**  
-  - The `build()` method was **too long**.  
-  - **Repeated styles** (e.g., `GoogleFonts.poppins` everywhere).  
-  - **Mixed UI logic**, making it hard to read and maintain.  
+  - `build()` method was long and hard to read.  
+  - Styles repeated multiple times.  
+  - UI logic mixed inside main widget tree.  
 
 ---
 
 ## 🛠️ Refactoring Done
-- Extracted widget tree into **helper methods**:
-  - `_buildLogo()`  
-  - `_buildTitle()`  
-  - `_buildSubtitle()`  
-  - `_buildUserTypeDropdown()`  
-  - `_buildTextField()`  
+- Extracted widget code into helper methods:
+  - `_buildHeader()`  
+  - `_buildEmailField()`  
+  - `_buildPasswordField()`  
+  - `_buildRoleDropdown()`  
   - `_buildLoginButton()`  
-  - `_buildFooterText()`  
-- Created **`AppTextStyles`** class for consistent text styling.  
-- Improved **readability**, **reusability**, and **maintainability**.  
+- Created `AppTextStyles` for consistent styling.  
+- Improved readability and maintainability.  
 
 ---
 
 ## ✅ Tests Added
-- **File:** `test/admin_login_view_test.dart`  
-- **What was tested:**  
-  - UI renders correctly (title, subtitle, text fields, and login button).  
-  - Email & password fields accept input.  
-  - Login button can be tapped and triggers the `login` function with entered credentials.  
+- **File:** `test/login_view_test.dart`  
+- Tests include:  
+  - UI rendering check (labels, fields, button).  
+  - Entering email and password.  
+  - Selecting a role.  
+  - Verifying login button calls `login`.  
 
-Run tests with:
+Run with:
 ```bash
 flutter test
