@@ -1,42 +1,38 @@
-# 📘 Lab Submission – Refactoring Task (LoginView)
+# 🚀 Flutter Refactoring Lab
 
-## 📝 Task Requirements
-1. Find code in the project that is a good candidate for refactoring.  
-2. Write tests for that code.  
-3. Refactor the code while ensuring tests still pass.  
-4. Submit via Pull Request for instructor/TA review.  
+## 📌 Overview
+This repository is part of the **Software Engineering Lab** task on **refactoring**.  
+The goal is to identify code smells, refactor them using techniques from Martin Fowler’s book and lecture slides, and verify correctness with tests.
 
----
-
-## 🔍 Code Selected
-- **File:** `lib/views/login_view.dart`  
-- **Reason for refactoring:**  
-  - `build()` method was long and hard to read.  
-  - Styles repeated multiple times.  
-  - UI logic mixed inside main widget tree.  
+We selected the `LoginView` screen as a candidate for refactoring because:
+- The `build()` method was **too long** and hard to read.  
+- **Duplicate styles** were scattered in multiple places.  
+- **Mixed responsibilities**: layout, state, and logic all inside one method.  
 
 ---
 
-## 🛠️ Refactoring Done
-- Extracted widget code into helper methods:
-  - `_buildHeader()`  
-  - `_buildEmailField()`  
-  - `_buildPasswordField()`  
-  - `_buildRoleDropdown()`  
-  - `_buildLoginButton()`  
-- Created `AppTextStyles` for consistent styling.  
-- Improved readability and maintainability.  
+## 🔧 Refactoring Techniques Applied
+Based on lecture slides and principles:
+
+- **Extract Function** → separated UI sections into `_buildHeader`, `_buildTitle`, `_buildEmailField`, `_buildPasswordField`, `_buildRoleDropdown`, `_buildLoginButton`.  
+- **Slide Statements** → grouped related code for readability.  
+- **Replace Temp with Query** → created `_inputDecoration()` helper for consistent input styles.  
+- **Remove Duplicate Code** → common text field UI extracted into `_buildInputField()`.  
 
 ---
 
-## ✅ Tests Added
-- **File:** `test/login_view_test.dart`  
-- Tests include:  
-  - UI rendering check (labels, fields, button).  
-  - Entering email and password.  
-  - Selecting a role.  
-  - Verifying login button calls `login`.  
+## ✅ Testing
+We applied **Test-Driven Refactoring**:
+1. Wrote **widget tests** for the original code.  
+2. Performed refactoring.  
+3. Ensured **all tests still pass**.  
 
-Run with:
+### Test Coverage
+- UI elements render correctly (title, fields, button).  
+- Email & password text entry works.  
+- Role dropdown selection works.  
+- Login button triggers controller method.  
+
+Run tests with:
 ```bash
 flutter test
