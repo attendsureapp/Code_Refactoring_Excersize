@@ -1,31 +1,53 @@
-# 🚀 Flutter Refactoring Lab – LoginView
+# 🚀 Flutter Refactoring Lab
 
 ## 📌 Overview
-This repository is part of the **Software Engineering Lab** on **Refactoring**.  
-The task was to identify code smells, refactor them using Martin Fowler’s techniques (from Lecture 12–13), and verify correctness with tests.  
+This repository is part of the **Software Engineering Lab** task on **refactoring**.  
+The goal is to identify code smells, refactor them using techniques from Martin Fowler’s book and lecture slides, and verify correctness with tests.
 
-We selected the `LoginView` screen because:
-- The `build()` method was **too long**.  
-- **Duplicate styles** existed for multiple fields.  
-- UI, state, and logic were **mixed in one place**.  
-
----
-
-## 🎯 Why Refactor?
-- Improve software design.  
-- Make code **easier to read and maintain**.  
-- Eliminate duplicate logic.  
-- Enable **faster, safer future changes**.  
+We selected the `LoginView` screen as a candidate for refactoring because:
+- The `build()` method was **too long** and hard to read.  
+- **Duplicate styles** were scattered in multiple places.  
+- **Mixed responsibilities**: layout, state, and logic all inside one method.  
 
 ---
 
-## ⚠️ Code Smells Identified
-- **Long Function** → single `build()` method contained all UI.  
-- **Duplicate Code** → similar `TextField` decoration repeated.  
-- **Shotgun Surgery risk** → any style change required updates everywhere.  
-- **Comment smell** → comments explained UI structure instead of clean functions.  
+## 🔧 Refactoring Techniques Applied
+Based on lecture slides and principles:
+
+- **Extract Function** → separated UI sections into `_buildHeader`, `_buildTitle`, `_buildEmailField`, `_buildPasswordField`, `_buildRoleDropdown`, `_buildLoginButton`.  
+- **Slide Statements** → grouped related code for readability.  
+- **Replace Temp with Query** → created `_inputDecoration()` helper for consistent input styles.  
+- **Remove Duplicate Code** → common text field UI extracted into `_buildInputField()`.  
 
 ---
+
+## ✨ Changes Made
+Here are the concrete changes applied to the code:
+
+1. **Split the large `build()` method** into multiple smaller private methods.  
+2. **Created `_inputDecoration()` helper** for consistent input field decoration.  
+3. **Extracted duplicate text styles** into a reusable `AppTextStyles` class.  
+4. **Moved password visibility logic** into controller (kept separation of concerns).  
+5. **Dropdown and button code simplified** for better readability.  
+6. **Added widget tests** before refactoring to ensure behavior consistency.  
+
+---
+
+## ✅ Testing
+We applied **Test-Driven Refactoring**:
+1. Wrote **widget tests** for the original code.  
+2. Performed refactoring.  
+3. Ensured **all tests still pass**.  
+
+### Test Coverage
+- UI elements render correctly (title, fields, button).  
+- Email & password text entry works.  
+- Role dropdown selection works.  
+- Login button triggers controller method.  
+
+Run tests with:
+```bash
+flutter test
 
 ## 🔧 Refactoring Techniques Applied
 
